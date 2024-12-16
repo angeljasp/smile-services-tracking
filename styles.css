@@ -1,0 +1,130 @@
+/* Reset básico para eliminar márgenes y paddings predeterminados */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+.header {
+  background-color: #FFB800; /* Color amarillo del logotipo */
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Sombra para mayor profundidad */
+}
+
+#logo {
+  width: 120px; /* Tamaño más pequeño del logotipo */
+  height: auto;
+}
+
+.header h1 {
+  font-size: 2em; /* Tamaño de letra moderado */
+  color: white;
+  margin-top: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px; /* Espaciado moderado */
+}
+
+.header p {
+  color: white;
+  font-size: 1.1em; /* Tamaño de letra moderado */
+}
+
+.tracking-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  background-color: #fff;
+  padding: 50px;
+  flex-direction: column;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  margin: 30px auto;
+  max-width: 800px;
+  border-radius: 12px;
+}
+
+.tracking-container h2 {
+  font-size: 1.8em; /* Tamaño moderado */
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#trackingForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+#trackingForm input {
+  padding: 12px;
+  margin-bottom: 20px;
+  width: 80%;
+  max-width: 400px;
+  font-size: 1.1em; /* Tamaño moderado */
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  transition: border-color 0.3s;
+}
+
+#trackingForm input:focus {
+  border-color: #FFB800; /* Cambio de color al hacer focus */
+}
+
+#trackingForm button {
+  padding: 12px 25px;
+  background-color: #FFB800;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em; /* Tamaño moderado */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#trackingForm button:hover {
+  background-color: #e68900; /* Tono más oscuro de amarillo */
+}
+
+#trackingInfo {
+  display: none;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 400px;
+  margin-top: 30px;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#trackingInfo h3 {
+  font-size: 1.6em; /* Tamaño moderado */
+  color: #333;
+  margin-bottom: 10px;
+}
+
+#trackingInfo p {
+  font-size: 1.1em; /* Tamaño moderado */
+  color: #555;
+}
+
+footer {
+  background-color: #FFB800;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  font-size: 1em;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

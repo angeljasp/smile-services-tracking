@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rastreo de Paquete - Smile Services & Delivery</title>
+  <link rel="stylesheet" href="style.css"> <!-- Asegúrate de que el archivo CSS esté vinculado -->
+</head>
+<body>
+
+  <!-- Encabezado con logo y nombre de la empresa -->
+  <header class="header">
+    <a href="https://ibb.co/FbvQYfC"><img id="logo" src="https://i.ibb.co/svST1Dz/Logo2-Amarillo.png" alt="Logo de Smile Services & Delivery"></a>
+    <h1>Smile Services & Delivery</h1>
+    <p>Rastrea tu paquete en tiempo real</p>
+  </header>
+
+  <!-- Contenedor de rastreo -->
+  <div class="tracking-container">
+    <h2>Rastrear Paquete</h2>
+    <form id="trackingForm">
+      <input type="text" id="trackingNumber" placeholder="Ingresa tu número de rastreo" required>
+      <button type="submit">Rastrear</button>
+    </form>
+
+    <!-- Información del rastreo -->
+    <div id="trackingInfo" style="display:none;">
+      <!-- Los detalles del rastreo se mostrarán aquí -->
+    </div>
+  </div>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>&copy; 2024 Smile Services & Delivery - Todos los derechos reservados</p>
+  </footer>
+
+  <!-- Script de JavaScript -->
+  <script>
+    // Función para obtener el estado del rastreo desde AfterShip
+    async function trackPackage(trackingNumber) {
+      const apiKey = 'asat_829733ce84e1424faac8a1f358c5c156'; // Tu API Key de AfterShip
+      const url = `https://api.aftership.com/v4/trackings/${trackingNumber}`;  // URL de la API de rastreo
+
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'aftership-api-key': apiKey,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const data = await response.json();
+        if (data.meta.code === 200) {
+          const trackingInfo = data.data.tracking;
+          const location = trackingInfo.trackings[0].location || 'Ubicación no disponible';
+          const status = trackingInfo.trackings[0].status;
+          const lastUpdate = trackingInfo.trackings[0].checkpoint.time;
+
+          // Muestra la información en la página
+          document.getElementById('trackingInfo').style.display = 'block';
+          document.getElementById('trackingInfo').innerHTML = `
+            <h3>Estado del Paquete:</h3>
+            <p><strong>Ubicación:</strong> ${location}</p>
+            <p><strong>Estado:</strong> ${status}</p>
+            <p><strong>Última Actualización:</strong> ${lastUpdate}</p>
+          `;
+        } else {
+          alert('No se pudo obtener la información del paquete. Intenta nuevamente.');
+        }
+      } catch (error) {
+        console.error('Error al rastrear el paquete:', error);
+        alert('Error al rastrear el paquete.');
+      }
+    }
+
+    // Evento para ejecutar la función cuando el formulario sea enviado
+    document.getElementById('trackingForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const trackingNumber = document.getElementById('trackingNumber').value;
+      if (trackingNumber) {
+        trackPackage(trackingNumber);
+      }
+    });
+  </script>
+
+</body>
+</html>
